@@ -1,25 +1,43 @@
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
--- Tạo GUI
+-- GUI
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
+local CopyButton = Instance.new("TextButton")
 
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+-- Frame
 Frame.Parent = ScreenGui
 Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.Size = UDim2.new(0, 400, 0, 120)
-Frame.Position = UDim2.new(0.5, -200, 0.5, -60)
+Frame.Size = UDim2.new(0, 400, 0, 150)
+Frame.Position = UDim2.new(0.5, -200, 0.5, -75)
 Frame.BackgroundTransparency = 0.1
-Frame.Active = true
 
+-- Label
 TextLabel.Parent = Frame
 TextLabel.BackgroundTransparency = 1
-TextLabel.Size = UDim2.new(1, 0, 1, 0)
-TextLabel.Text = "Vui Lòng Vượt Link Mới Để Tiếp Tục Dùng : https://link4m.com/Zism6X"
+TextLabel.Size = UDim2.new(1, 0, 0.6, 0)
+TextLabel.Text = "Vui Lòng Vượt Link Để Tiếp Tục Dùng :https://link4m.com/Zism6X Hãy Ấn Vào Để Sao Chép"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
 TextLabel.TextScaled = true
 TextLabel.Font = Enum.Font.SourceSansBold
+
+-- Copy Button
+CopyButton.Parent = Frame
+CopyButton.Size = UDim2.new(0.6, 0, 0.25, 0)
+CopyButton.Position = UDim2.new(0.2, 0, 0.7, 0)
+CopyButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+CopyButton.Text = "📋 Copy TikTok"
+CopyButton.TextScaled = true
+CopyButton.Font = Enum.Font.SourceSansBold
+CopyButton.TextColor3 = Color3.fromRGB(255,255,255)
+CopyButton.MouseButton1Click:Connect(function()
+    setclipboard("https://link4m.com/Zism6X") -- copy vào clipboard
+    CopyButton.Text = "✅ Đã copy!"
+    task.wait(2)
+    CopyButton.Text = "📋 Copy TikTok"
+end)
